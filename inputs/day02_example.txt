@@ -1,0 +1,1 @@
+# Input placeholder for day 02 (example).
