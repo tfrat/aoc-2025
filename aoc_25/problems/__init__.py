@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Dict
-
 from .base import Problem
 from .day01 import Day01
 from .day02 import Day02
@@ -18,7 +16,7 @@ from .day10 import Day10
 from .day11 import Day11
 from .day12 import Day12
 
-PROBLEMS: Dict[int, Problem] = {
+PROBLEMS: dict[int, Problem] = {
     problem.day: problem
     for problem in (
         Day01(),

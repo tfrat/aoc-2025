@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import re
 from itertools import islice
-from typing import Iterable, Iterator, Sequence, Tuple, TypeVar
+from typing import Iterable, Iterator, Sequence, TypeVar
 
 T = TypeVar("T")
 
@@ -48,7 +48,7 @@ def sliding_window(sequence: Sequence[T], size: int) -> Iterator[tuple[T, ...]]:
     if size > len(sequence):
         return
 
-    window: Tuple[T, ...] = tuple(sequence[:size])
+    window: tuple[T, ...] = tuple(sequence[:size])
     yield window
 
     for index in range(size, len(sequence)):

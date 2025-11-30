@@ -4,8 +4,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from enum import Enum
-from typing import Tuple
-
 
 @dataclass(frozen=True, slots=True)
 class Point:
@@ -26,7 +24,7 @@ class Point:
         dx, dy = direction.delta
         return Point(self.x + dx, self.y + dy)
 
-    def neighbors4(self) -> Tuple[Point, Point, Point, Point]:
+    def neighbors4(self) -> tuple[Point, Point, Point, Point]:
         """Return orthogonal neighbors."""
 
         north, east, south, west = Direction.cardinals()
@@ -37,7 +35,7 @@ class Point:
             self.step(west),
         )
 
-    def neighbors8(self) -> Tuple[Point, ...]:
+    def neighbors8(self) -> tuple[Point, ...]:
         """Return orthogonal + diagonal neighbors."""
 
         return tuple(self.step(direction) for direction in Direction.octants())
@@ -87,19 +85,19 @@ class Direction(Enum):
         return mapping[self]
 
     @classmethod
-    def cardinals(cls) -> Tuple[Direction, Direction, Direction, Direction]:
+    def cardinals(cls) -> tuple[Direction, Direction, Direction, Direction]:
         """Return N/E/S/W directions."""
 
         return cls.NORTH, cls.EAST, cls.SOUTH, cls.WEST
 
     @classmethod
-    def diagonals(cls) -> Tuple[Direction, Direction, Direction, Direction]:
+    def diagonals(cls) -> tuple[Direction, Direction, Direction, Direction]:
         """Return diagonal directions."""
 
         return cls.NORTH_EAST, cls.SOUTH_EAST, cls.SOUTH_WEST, cls.NORTH_WEST
 
     @classmethod
-    def octants(cls) -> Tuple[Direction, ...]:
+    def octants(cls) -> tuple[Direction, ...]:
         """Return all eight directions."""
 
         return cls.cardinals() + cls.diagonals()

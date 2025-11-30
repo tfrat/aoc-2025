@@ -5,7 +5,7 @@ from __future__ import annotations
 from collections import deque
 from dataclasses import dataclass
 from heapq import heappop, heappush
-from typing import Callable, Deque, Dict, Generic, Iterable, TypeVar
+from typing import Callable, Generic, Iterable, TypeVar
 
 T = TypeVar("T")
 
@@ -16,7 +16,7 @@ class SearchResult(Generic[T]):
 
     node: T
     cost: int
-    parents: Dict[T, T]
+    parents: dict[T, T]
 
     def reconstruct_path(self, start: T) -> list[T]:
         """Return path from ``start`` to the result node."""
@@ -37,8 +37,8 @@ def bfs(
 ) -> SearchResult[T] | None:
     """Breadth-first search over an unweighted graph."""
 
-    queue: Deque[tuple[T, int]] = deque([(start, 0)])
-    parents: Dict[T, T] = {}
+    queue: deque[tuple[T, int]] = deque([(start, 0)])
+    parents: dict[T, T] = {}
     seen: set[T] = {start}
 
     while queue:
@@ -65,8 +65,8 @@ def dijkstra(
     """Dijkstra's algorithm for weighted graphs."""
 
     heap: list[tuple[int, T]] = [(0, start)]
-    parents: Dict[T, T] = {}
-    costs: Dict[T, int] = {start: 0}
+    parents: dict[T, T] = {}
+    costs: dict[T, int] = {start: 0}
 
     while heap:
         cost, node = heappop(heap)

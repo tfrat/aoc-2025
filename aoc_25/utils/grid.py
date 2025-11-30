@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Callable, Dict, Generic, Iterable, Iterator, Tuple, TypeVar
+from typing import Callable, Generic, Iterable, Iterator, TypeVar
 
 from .geometry import Direction, Point
 
@@ -14,7 +14,7 @@ T = TypeVar("T")
 class Grid2D(Generic[T]):
     """Sparse grid backed by a ``dict`` of :class:`Point` -> value."""
 
-    cells: Dict[Point, T]
+    cells: dict[Point, T]
     width: int
     height: int
 
@@ -61,7 +61,7 @@ def parse_grid(
     height = len(processed)
     width = max((len(line) for line in processed), default=0)
 
-    cells: Dict[Point, T | str] = {}
+    cells: dict[Point, T | str] = {}
     for y, line in enumerate(processed):
         for x, char in enumerate(line):
             value: T | str = cast(char) if cast else char
