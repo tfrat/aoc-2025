@@ -5,7 +5,6 @@ from __future__ import annotations
 from ..utils import chunk_by_blank_lines
 
 
-
 def count_zeros(rotations: list[tuple[str, int]], count_passes: bool = False) -> int:
     number = 50
     counter = 0
@@ -22,8 +21,6 @@ def count_zeros(rotations: list[tuple[str, int]], count_passes: bool = False) ->
 
         number = number % 100
 
-
-
     return counter
 
 
@@ -31,15 +28,20 @@ class Day01:
     day = 1
     name = "Day 01 - Password"
 
-
     def solve_part_one(self, data: str) -> str:
         rotations_raw = chunk_by_blank_lines(data)
-        rotations = [(rotation_raw[0], int(rotation_raw[1:])) for rotation_raw in rotations_raw[0]]
+        rotations = [
+            (rotation_raw[0], int(rotation_raw[1:]))
+            for rotation_raw in rotations_raw[0]
+        ]
 
         return str(count_zeros(rotations, False))
 
     def solve_part_two(self, data: str) -> str:
         rotations_raw = chunk_by_blank_lines(data)
-        rotations = [(rotation_raw[0], int(rotation_raw[1:])) for rotation_raw in rotations_raw[0]]
+        rotations = [
+            (rotation_raw[0], int(rotation_raw[1:]))
+            for rotation_raw in rotations_raw[0]
+        ]
 
         return str(count_zeros(rotations, True))

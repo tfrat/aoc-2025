@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from enum import Enum
 
+
 @dataclass(frozen=True, slots=True)
 class Point:
     """2D integer coordinate used for AoC grid problems."""

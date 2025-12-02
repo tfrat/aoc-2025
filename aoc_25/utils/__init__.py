@@ -9,7 +9,13 @@ from __future__ import annotations
 
 from .geometry import Direction, Point
 from .grid import Grid2D, parse_grid
-from .parsing import chunk_by_blank_lines, chunk_every, extract_ints, parse_ints, sliding_window
+from .parsing import (
+    chunk_by_blank_lines,
+    chunk_every,
+    extract_ints,
+    parse_ints,
+    sliding_window,
+)
 from .search import bfs, dijkstra
 
 __all__ = [

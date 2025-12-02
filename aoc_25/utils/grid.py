@@ -24,7 +24,9 @@ class Grid2D(Generic[T]):
     def __getitem__(self, point: Point) -> T:
         return self.cells[point]
 
-    def neighbors(self, point: Point, diagonals: bool = False) -> Iterator[tuple[Point, T]]:
+    def neighbors(
+        self, point: Point, diagonals: bool = False
+    ) -> Iterator[tuple[Point, T]]:
         """Iterate over neighbors optionally including diagonals."""
 
         directions = Direction.octants() if diagonals else Direction.cardinals()
