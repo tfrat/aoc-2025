@@ -30,6 +30,10 @@ def has_variable_repeating_pattern(n: int) -> bool:
     str_n = str(n)
     split_len = 1
     while split_len < len(str_n):
+        # Skip if the split isn't a divisor as it can't have a complete repeating pattern
+        if len(str_n) % split_len != 0:
+            split_len += 1
+            continue
         offset = 0
         splits = set()
         while offset < len(str_n):
