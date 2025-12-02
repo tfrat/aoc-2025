@@ -36,6 +36,9 @@ def has_variable_repeating_pattern(n: int) -> bool:
             section = str_n[offset : offset + split_len]
             splits.add(section)
             offset += split_len
+            # Bail early if one of the segments doesn't match
+            if len(splits) > 1:
+                break
         if len(splits) == 1:
             return True
         split_len += 1
