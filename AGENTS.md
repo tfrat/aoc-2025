@@ -19,6 +19,7 @@ Add puzzle-specific scripts under `scripts/` if necessary; document them here.
 - Python 3.14+, fully typed. Enable `from __future__ import annotations` in new modules.
 - Follow standard PEP 8 with 4-space indentation; prefer dataclasses over heavy frameworks unless required.
 - Name puzzle classes `DayXX`; functions use `snake_case`. Inputs: `dayXX_example.txt` / `dayXX_actual.txt`.
+- Use absolute imports (`from aoc_25.utils.grid import Grid2D`); relative imports are not allowed.
 - Keep comments succinct and only for non-obvious intent; avoid redundancy.
 
 ## Testing Guidelines

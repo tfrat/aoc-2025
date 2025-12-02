@@ -8,8 +8,8 @@ from typing import Annotated
 
 import typer
 
-from .problems import get_problem
-from .problems.base import Problem, ProblemResult
+from aoc_25.problems import get_problem
+from aoc_25.problems.base import Problem, ProblemResult
 
 app = typer.Typer(help="Run Advent of Code 2025 solutions.")
 

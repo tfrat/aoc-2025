@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Callable, Generic, Iterable, Iterator, TypeVar
 
-from .geometry import Direction, Point
+from aoc_25.utils.geometry import Direction, Point
 
 T = TypeVar("T")
 

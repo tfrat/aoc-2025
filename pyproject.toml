@@ -14,3 +14,5 @@ aoc25 = "aoc_25.runner:app"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+tool.uv.package = true

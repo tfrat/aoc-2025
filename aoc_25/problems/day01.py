@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from ..utils import chunk_by_blank_lines
+from aoc_25.utils import chunk_by_blank_lines
 
 
 def count_zeros(rotations: list[tuple[str, int]], count_passes: bool = False) -> int:

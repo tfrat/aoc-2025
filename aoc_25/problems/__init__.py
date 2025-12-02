@@ -2,19 +2,19 @@
 
 from __future__ import annotations
 
-from .base import Problem
-from .day01 import Day01
-from .day02 import Day02
-from .day03 import Day03
-from .day04 import Day04
-from .day05 import Day05
-from .day06 import Day06
-from .day07 import Day07
-from .day08 import Day08
-from .day09 import Day09
-from .day10 import Day10
-from .day11 import Day11
-from .day12 import Day12
+from aoc_25.problems.base import Problem
+from aoc_25.problems.day01 import Day01
+from aoc_25.problems.day02 import Day02
+from aoc_25.problems.day03 import Day03
+from aoc_25.problems.day04 import Day04
+from aoc_25.problems.day05 import Day05
+from aoc_25.problems.day06 import Day06
+from aoc_25.problems.day07 import Day07
+from aoc_25.problems.day08 import Day08
+from aoc_25.problems.day09 import Day09
+from aoc_25.problems.day10 import Day10
+from aoc_25.problems.day11 import Day11
+from aoc_25.problems.day12 import Day12
 
 PROBLEMS: dict[int, Problem] = {
     problem.day: problem
