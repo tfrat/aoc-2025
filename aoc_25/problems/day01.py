@@ -13,7 +13,7 @@ def count_zeros(rotations: list[tuple[str, int]], count_passes: bool = False) ->
         prev = number
         number = number - clicks if rotation == "L" else number + clicks
 
-        if number in [0, 100]:
+        if number in {0, 100}:
             counter += 1
         elif count_passes:
             counter += (abs(number) + 100) // 100 if number < 0 else number // 100
