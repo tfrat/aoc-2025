@@ -1,1 +1,3 @@
-# Input placeholder for day 07 (example).
+Day 07 example input line 1
+Day 07 example input line 2
+Day 07 example input line 3

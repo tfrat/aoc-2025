@@ -1,1 +1,5 @@
-# Input placeholder for day 02 (actual).
+Day 02 actual input line 1
+Day 02 actual input line 2
+Day 02 actual input line 3
+Day 02 actual input line 4
+Day 02 actual input line 5

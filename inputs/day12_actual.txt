@@ -1,1 +1,5 @@
-# Input placeholder for day 12 (actual).
+Day 12 actual input line 1
+Day 12 actual input line 2
+Day 12 actual input line 3
+Day 12 actual input line 4
+Day 12 actual input line 5
