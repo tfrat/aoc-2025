@@ -1,3 +1,4 @@
-Day 03 example input line 1
-Day 03 example input line 2
-Day 03 example input line 3
+987654321111111
+811111111111119
+234234234234278
+818181911112111
