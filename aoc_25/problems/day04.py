@@ -23,9 +23,6 @@ def find_removable(
     new_removed = set()
     if can_be_accessed(grid, point, removed if removed is not None else set()):
         new_removed.add(point)
-        if removed is not None:
-            for neighbor, _ in grid.neighbors(point, diagonals=True):
-                new_removed |= find_removable(grid, neighbor, removed | new_removed)
     return new_removed
 
 
@@ -43,7 +40,10 @@ class Day04:
     def solve_part_two(self, data: str) -> str:
         grid = parse_grid(data)
         removed = set()
-        for point in grid.points():
-            removed |= find_removable(grid, point, removed)
+        prev_removed = None
+        while removed != prev_removed:
+            prev_removed = removed.copy()
+            for point in grid.points():
+                removed |= find_removable(grid, point, removed)
 
         return str(len(removed))
