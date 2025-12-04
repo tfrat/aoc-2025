@@ -18,10 +18,10 @@ def can_be_accessed(grid: Grid2D[str], point: Point, removed: set[Point]) -> boo
 
 
 def find_removable(grid: Grid2D[str], point: Point, removed: set[Point]) -> set[Point]:
-    new_removed = set()
+    removable = set()
     if can_be_accessed(grid, point, removed):
-        new_removed.add(point)
-    return new_removed
+        removable.add(point)
+    return removable
 
 
 class Day04:
