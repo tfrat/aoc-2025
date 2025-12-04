@@ -23,3 +23,5 @@ class ProblemResult:
 
     part_one: str
     part_two: str
+    part_one_time: float
+    part_two_time: float

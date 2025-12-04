@@ -5,6 +5,7 @@ from __future__ import annotations
 from enum import StrEnum
 from pathlib import Path
 from typing import Annotated
+from time import perf_counter
 
 import typer
 
@@ -36,9 +37,20 @@ def _read_input(day: int, dataset: Dataset, override: Path | None) -> str:
 def _execute(problem: Problem, data: str) -> ProblemResult:
     """Execute both parts of a problem and return structured results."""
 
+    part_one_start = perf_counter()
     part_one = problem.solve_part_one(data)
+    part_one_time = perf_counter() - part_one_start
+
+    part_two_start = perf_counter()
     part_two = problem.solve_part_two(data)
-    return ProblemResult(part_one=part_one, part_two=part_two)
+    part_two_time = perf_counter() - part_two_start
+
+    return ProblemResult(
+        part_one=part_one,
+        part_two=part_two,
+        part_one_time=part_one_time,
+        part_two_time=part_two_time,
+    )
 
 
 @app.command("run")
@@ -70,8 +82,8 @@ def run_problem(
     result = _execute(problem, data)
 
     typer.echo(f"Day {problem.day:02d} – {problem.name}")
-    typer.echo(f"  Part 1: {result.part_one}")
-    typer.echo(f"  Part 2: {result.part_two}")
+    typer.echo(f"  Part 1: {result.part_one} ({result.part_one_time:.3f}s)")
+    typer.echo(f"  Part 2: {result.part_two} ({result.part_two_time:.3f}s)")
 
 
 if __name__ == "__main__":

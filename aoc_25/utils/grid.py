@@ -24,6 +24,9 @@ class Grid2D(Generic[T]):
     def __getitem__(self, point: Point) -> T:
         return self.cells[point]
 
+    def get(self, point: Point, default: T | None = None) -> T | None:
+        return self.cells.get(point, default)
+
     def neighbors(
         self, point: Point, diagonals: bool = False
     ) -> Iterator[tuple[Point, T]]:
