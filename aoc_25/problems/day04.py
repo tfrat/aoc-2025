@@ -17,11 +17,9 @@ def can_be_accessed(grid: Grid2D[str], point: Point, removed: set[Point]) -> boo
     return blocked < 4
 
 
-def find_removable(
-    grid: Grid2D[str], point: Point, removed: set[Point] | None
-) -> set[Point]:
+def find_removable(grid: Grid2D[str], point: Point, removed: set[Point]) -> set[Point]:
     new_removed = set()
-    if can_be_accessed(grid, point, removed if removed is not None else set()):
+    if can_be_accessed(grid, point, removed):
         new_removed.add(point)
     return new_removed
 
@@ -34,7 +32,7 @@ class Day04:
         grid = parse_grid(data)
         removed = set()
         for point in grid.points():
-            removed |= find_removable(grid, point, None)
+            removed |= find_removable(grid, point, set())
         return str(len(removed))
 
     def solve_part_two(self, data: str) -> str:
