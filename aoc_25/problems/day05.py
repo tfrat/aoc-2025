@@ -1,5 +1,3 @@
-"""Day 05 scaffold."""
-
 from __future__ import annotations
 
 from aoc_25.utils import chunk_by_blank_lines
@@ -13,8 +11,6 @@ def sorted_merge(one: tuple[int, int], two: tuple[int, int]) -> tuple[int, int] 
 
 
 class Day05:
-    """Placeholder implementation for Day 05."""
-
     day = 5
     name = "Cafeteria"
 
