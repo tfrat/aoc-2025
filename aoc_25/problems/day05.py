@@ -32,20 +32,25 @@ class Day05:
         return str(len(fresh))
 
     def solve_part_two(self, data: str) -> str:
-        ranges_raw, _ = chunk_by_blank_lines(data)
-        ranges = [
-            (int(range_raw.split("-")[0]), int(range_raw.split("-")[1]))
-            for range_raw in ranges_raw
-        ]
-        ranges = sorted(ranges, key=lambda x: x[0])
-        current = ranges[0]
+        product_strings, _ = chunk_by_blank_lines(data)
+        product_ranges = sorted(
+            [
+                (left, right)
+                for s in product_strings
+                for left, right in [tuple(map(int, s.split("-", 1)))]
+            ],
+            key=lambda x: x[0],
+        )
+
+        current_range = product_ranges[0]
         total = 0
-        for range_ in ranges[1:]:
-            merged = sorted_merge(current, range_)
+        for product_range in product_ranges[1:]:
+            merged = sorted_merge(current_range, product_range)
             if merged is None:
-                total += current[1] - current[0] + 1
-                current = range_
+                total += current_range[1] - current_range[0] + 1
+                current_range = product_range
             else:
-                current = merged
-        total += current[1] - current[0] + 1
+                current_range = merged
+        total += current_range[1] - current_range[0] + 1
+
         return str(total)
