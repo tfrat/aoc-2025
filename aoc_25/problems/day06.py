@@ -37,7 +37,6 @@ class Day06:
                 curr_val = 0 if operators[problem_index] == "+" else 1
                 continue
 
-            # Build our number up MSB at the top, LSB at the bottom
             number = int(column)
 
             curr_val = (
