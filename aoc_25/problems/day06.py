@@ -39,8 +39,6 @@ class Day06:
                     columns[i].append(int(ch))
 
         problem_index = 0
-        # Seed the results with the operator's identity value
-        # results = [0 if op == "+" else 1 for op in operators]
         total = 0
         curr_val = 0 if operators[problem_index] == "+" else 1
         for i in range(0, num_cols):
