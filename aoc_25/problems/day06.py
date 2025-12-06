@@ -24,14 +24,11 @@ class Day06:
     def solve_part_two(self, data: str) -> str:
         lines = data.splitlines()
         operators = lines[-1].split()
-        num_cols = len(lines[0])
-        # Trim out the operators
-        lines = lines[:-1]
         problem_index = 0
         total = 0
         curr_val = 0 if operators[problem_index] == "+" else 1
-        for i in range(0, num_cols):
-            column = "".join(line[i] for line in lines).strip()
+        for i in range(0, len(lines[0])):
+            column = "".join(line[i] for line in lines[:-1]).strip()
 
             # We hit a column of pure white space, time to move on to the next problem
             if not column:
