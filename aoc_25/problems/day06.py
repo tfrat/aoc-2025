@@ -37,7 +37,6 @@ class Day06:
                 ch = lines[j][i]
                 if ch != " ":
                     columns[i].append(int(ch))
-            i += 1
 
         problem_index = 0
         # Seed the results with the operator's identity value
