@@ -26,20 +26,15 @@ class Day01:
     day = 1
     name = "Secret Entrance"
 
-    def solve_part_one(self, data: str) -> str:
+    def __init__(self, data: str):
         rotations_raw = chunk_by_blank_lines(data)
-        rotations = [
+        self.rotations = [
             (rotation_raw[0], int(rotation_raw[1:]))
             for rotation_raw in rotations_raw[0]
         ]
 
-        return str(count_zeros(rotations, False))
+    def solve_part_one(self) -> str:
+        return str(count_zeros(self.rotations, False))
 
-    def solve_part_two(self, data: str) -> str:
-        rotations_raw = chunk_by_blank_lines(data)
-        rotations = [
-            (rotation_raw[0], int(rotation_raw[1:]))
-            for rotation_raw in rotations_raw[0]
-        ]
-
-        return str(count_zeros(rotations, True))
+    def solve_part_two(self) -> str:
+        return str(count_zeros(self.rotations, True))

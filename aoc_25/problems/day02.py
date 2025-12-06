@@ -3,12 +3,9 @@ from __future__ import annotations
 from collections.abc import Callable
 
 
-def sum_invalid_products(data: str, detector: Callable[int, bool]) -> int:
-    ranges = [
-        (int(left), int(right))
-        for range_raw in data.split(",")
-        for left, right in [range_raw.split("-")]
-    ]
+def sum_invalid_products(
+    ranges: list[tuple[int, int]], detector: Callable[int, bool]
+) -> int:
     total = 0
     for left, right in ranges:
         while left <= right:
@@ -51,8 +48,15 @@ class Day02:
     day = 2
     name = "Gift Shop"
 
-    def solve_part_one(self, data: str) -> str:
-        return str(sum_invalid_products(data, has_repeating_pattern))
+    def __init__(self, data: str):
+        self.ranges = [
+            (int(left), int(right))
+            for range_raw in data.split(",")
+            for left, right in [range_raw.split("-")]
+        ]
 
-    def solve_part_two(self, data: str) -> str:
-        return str(sum_invalid_products(data, has_variable_repeating_pattern))
+    def solve_part_one(self) -> str:
+        return str(sum_invalid_products(self.ranges, has_repeating_pattern))
+
+    def solve_part_two(self) -> str:
+        return str(sum_invalid_products(self.ranges, has_variable_repeating_pattern))

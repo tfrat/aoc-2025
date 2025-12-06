@@ -23,10 +23,11 @@ class Day03:
     day = 3
     name = "Lobby"
 
-    def solve_part_one(self, data: str) -> str:
-        [banks] = chunk_by_blank_lines(data)
-        return str(find_total_voltage(banks, 2))
+    def __init__(self, data: str):
+        [self.banks] = chunk_by_blank_lines(data)
 
-    def solve_part_two(self, data: str) -> str:
-        [banks] = chunk_by_blank_lines(data)
-        return str(find_total_voltage(banks, 12))
+    def solve_part_one(self) -> str:
+        return str(find_total_voltage(self.banks, 2))
+
+    def solve_part_two(self) -> str:
+        return str(find_total_voltage(self.banks, 12))

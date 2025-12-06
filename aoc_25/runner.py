@@ -34,15 +34,15 @@ def _read_input(day: int, dataset: Dataset, override: Path | None) -> str:
     return path.read_text().rstrip("\n")
 
 
-def _execute(problem: Problem, data: str) -> ProblemResult:
+def _execute(problem: Problem) -> ProblemResult:
     """Execute both parts of a problem and return structured results."""
 
     part_one_start = perf_counter()
-    part_one = problem.solve_part_one(data)
+    part_one = problem.solve_part_one()
     part_one_time = perf_counter() - part_one_start
 
     part_two_start = perf_counter()
-    part_two = problem.solve_part_two(data)
+    part_two = problem.solve_part_two()
     part_two_time = perf_counter() - part_two_start
 
     return ProblemResult(
@@ -77,9 +77,9 @@ def run_problem(
 ) -> None:
     """Run a specific problem for the requested dataset."""
 
-    problem = get_problem(day)
     data = _read_input(day, dataset, input_path)
-    result = _execute(problem, data)
+    problem = get_problem(day, data)
+    result = _execute(problem)
 
     typer.echo(f"Day {problem.day:02d} – {problem.name}")
     typer.echo(f"  Part 1: {result.part_one} ({result.part_one_time:.3f}s)")

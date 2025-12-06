@@ -14,29 +14,24 @@ class Day05:
     day = 5
     name = "Cafeteria"
 
-    def solve_part_one(self, data: str) -> str:
+    def __init__(self, data: str):
         ranges_raw, inventory = chunk_by_blank_lines(data)
-        ranges = [
+        self.ranges = [
             (int(range_raw.split("-")[0]), int(range_raw.split("-")[1]))
             for range_raw in ranges_raw
         ]
+        self.inventory = inventory
+
+    def solve_part_one(self) -> str:
         fresh = set()
-        for item in inventory:
-            for range_ in ranges:
+        for item in self.inventory:
+            for range_ in self.ranges:
                 if range_[0] <= int(item) <= range_[1]:
                     fresh.add(item)
         return str(len(fresh))
 
-    def solve_part_two(self, data: str) -> str:
-        product_strings, _ = chunk_by_blank_lines(data)
-        product_ranges = sorted(
-            [
-                (left, right)
-                for s in product_strings
-                for left, right in [tuple(map(int, s.split("-", 1)))]
-            ],
-            key=lambda x: x[0],
-        )
+    def solve_part_two(self) -> str:
+        product_ranges = sorted(self.ranges, key=lambda x: x[0])
 
         current_range = product_ranges[0]
         total = 0

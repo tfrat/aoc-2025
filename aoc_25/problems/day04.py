@@ -26,20 +26,21 @@ class Day04:
     day = 4
     name = "Printing Department"
 
-    def solve_part_one(self, data: str) -> str:
-        grid = parse_grid(data)
+    def __init__(self, data: str):
+        self.grid = parse_grid(data)
+
+    def solve_part_one(self) -> str:
         removed = set()
-        for point in grid.points():
-            removed |= find_removable(grid, point, set())
+        for point in self.grid.points():
+            removed |= find_removable(self.grid, point, set())
         return str(len(removed))
 
-    def solve_part_two(self, data: str) -> str:
-        grid = parse_grid(data)
+    def solve_part_two(self) -> str:
         removed = set()
         prev_removed = None
         while removed != prev_removed:
             prev_removed = removed.copy()
-            for point in grid.points():
-                removed |= find_removable(grid, point, removed)
+            for point in self.grid.points():
+                removed |= find_removable(self.grid, point, removed)
 
         return str(len(removed))
