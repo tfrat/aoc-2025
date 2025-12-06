@@ -1,15 +1,13 @@
-"""Day 06 scaffold."""
-
 from __future__ import annotations
+
+from collections import defaultdict
 
 from aoc_25.utils import parse_ints
 
 
 class Day06:
-    """Placeholder implementation for Day 06."""
-
     day = 6
-    name = "Day 06 Placeholder"
+    name = "Trash Compactor"
 
     def solve_part_one(self, data: str) -> str:
         lines = data.splitlines()
@@ -25,6 +23,27 @@ class Day06:
         return str(sum(results))
 
     def solve_part_two(self, data: str) -> str:
-        return (
-            f"Day 06 part 2 not implemented (received {len(data.splitlines())} lines)"
-        )
+        lines = data.splitlines()
+        operators = lines[-1].split()
+        results = [0 if op == "+" else 1 for op in operators]
+        problem_index = 0
+        i = 0
+        stacks = defaultdict(list)
+        while i < len(lines[0]):
+            for j in range(0, len(lines) - 1):
+                stacks[i].append(lines[j][i])
+            i += 1
+        for i in range(0, len(stacks)):
+            filtered = list(filter(lambda x: x != " ", stacks[i]))
+            collapsed = sum(
+                int(val) * pow(10, len(filtered) - x - 1)
+                for x, val in enumerate(filtered)
+            )
+            if not collapsed:
+                problem_index += 1
+                continue
+            if operators[problem_index] == "+":
+                results[problem_index] += collapsed
+            else:
+                results[problem_index] *= collapsed
+        return str(sum(results))

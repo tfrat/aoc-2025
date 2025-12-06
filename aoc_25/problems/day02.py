@@ -1,5 +1,3 @@
-"""Day 02 scaffold."""
-
 from __future__ import annotations
 
 from collections.abc import Callable
@@ -51,7 +49,7 @@ def has_variable_repeating_pattern(n: int) -> bool:
 
 class Day02:
     day = 2
-    name = "Day 02 Invalid Product IDs"
+    name = "Gift Shop"
 
     def solve_part_one(self, data: str) -> str:
         return str(sum_invalid_products(data, has_repeating_pattern))

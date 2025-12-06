@@ -1,5 +1,3 @@
-"""Day 01 scaffold."""
-
 from __future__ import annotations
 
 from aoc_25.utils import chunk_by_blank_lines
@@ -26,7 +24,7 @@ def count_zeros(rotations: list[tuple[str, int]], count_passes: bool = False) ->
 
 class Day01:
     day = 1
-    name = "Day 01 - Password"
+    name = "Secret Entrance"
 
     def solve_part_one(self, data: str) -> str:
         rotations_raw = chunk_by_blank_lines(data)

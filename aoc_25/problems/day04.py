@@ -1,5 +1,3 @@
-"""Day 04 scaffold."""
-
 from __future__ import annotations
 
 from aoc_25.utils import parse_grid, Grid2D, Point
@@ -26,7 +24,7 @@ def find_removable(grid: Grid2D[str], point: Point, removed: set[Point]) -> set[
 
 class Day04:
     day = 4
-    name = "Day 04 Printing Department"
+    name = "Printing Department"
 
     def solve_part_one(self, data: str) -> str:
         grid = parse_grid(data)

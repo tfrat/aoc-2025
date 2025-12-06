@@ -1,5 +1,3 @@
-"""Day 03 scaffold."""
-
 from __future__ import annotations
 
 from aoc_25.utils import chunk_by_blank_lines
@@ -23,7 +21,7 @@ def find_total_voltage(banks: list[str], battery_size: int) -> int:
 
 class Day03:
     day = 3
-    name = "Day 03 Joltage"
+    name = "Lobby"
 
     def solve_part_one(self, data: str) -> str:
         [banks] = chunk_by_blank_lines(data)
