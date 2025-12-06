@@ -40,12 +40,15 @@ class Day06:
 
         problem_index = 0
         # Seed the results with the operator's identity value
-        results = [0 if op == "+" else 1 for op in operators]
-
+        # results = [0 if op == "+" else 1 for op in operators]
+        total = 0
+        curr_val = 0 if operators[problem_index] == "+" else 1
         for i in range(0, num_cols):
             # We hit a column of pure white space, time to move on to the next problem
             if not (column := columns[i]):
+                total += curr_val
                 problem_index += 1
+                curr_val = 0 if operators[problem_index] == "+" else 1
                 continue
 
             # Build our number up MSB at the the, LSB at the bottom
@@ -54,8 +57,10 @@ class Day06:
             )
 
             if operators[problem_index] == "+":
-                results[problem_index] += number
+                curr_val += number
             else:
-                results[problem_index] *= number
+                curr_val *= number
 
-        return str(sum(results))
+        total += curr_val
+
+        return str(total)
