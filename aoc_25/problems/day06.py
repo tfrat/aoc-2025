@@ -31,10 +31,7 @@ class Day06:
         total = 0
         curr_val = 0 if operators[problem_index] == "+" else 1
         for i in range(0, num_cols):
-            column = ""
-            for j in range(0, len(lines)):
-                column += lines[j][i]
-            column = column.strip()
+            column = "".join(line[i] for line in lines).strip()
 
             # We hit a column of pure white space, time to move on to the next problem
             if not column:
