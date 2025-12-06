@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from collections import defaultdict
 
 from aoc_25.utils import parse_ints
 
@@ -26,33 +25,26 @@ class Day06:
         lines = data.splitlines()
         operators = lines[-1].split()
         num_cols = len(lines[0])
-
         # Trim out the operators
-        lines = lines[0:-1]
-
-        # Loop over every character in the worksheet, building the vertical digits, keeping whitespace
-        columns = defaultdict(list)
-        for i in range(0, num_cols):
-            for j in range(0, len(lines)):
-                ch = lines[j][i]
-                if ch != " ":
-                    columns[i].append(int(ch))
-
+        lines = lines[:-1]
         problem_index = 0
         total = 0
         curr_val = 0 if operators[problem_index] == "+" else 1
         for i in range(0, num_cols):
+            column = ""
+            for j in range(0, len(lines)):
+                column += lines[j][i]
+            column = column.strip()
+
             # We hit a column of pure white space, time to move on to the next problem
-            if not (column := columns[i]):
+            if not column:
                 total += curr_val
                 problem_index += 1
                 curr_val = 0 if operators[problem_index] == "+" else 1
                 continue
 
             # Build our number up MSB at the top, LSB at the bottom
-            number = sum(
-                int(val) * pow(10, len(column) - x - 1) for x, val in enumerate(column)
-            )
+            number = int(column)
 
             curr_val = (
                 curr_val + number
