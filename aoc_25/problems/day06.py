@@ -54,10 +54,11 @@ class Day06:
                 int(val) * pow(10, len(column) - x - 1) for x, val in enumerate(column)
             )
 
-            if operators[problem_index] == "+":
-                curr_val += number
-            else:
-                curr_val *= number
+            curr_val = (
+                curr_val + number
+                if operators[problem_index] == "+"
+                else curr_val * number
+            )
 
         total += curr_val
 
