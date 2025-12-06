@@ -1,3 +1,4 @@
-Day 06 example input line 1
-Day 06 example input line 2
-Day 06 example input line 3
+123 328  51 64 
+ 45 64  387 23 
+  6 98  215 314
+*   +   *   + 
