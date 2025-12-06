@@ -51,7 +51,7 @@ class Day06:
                 curr_val = 0 if operators[problem_index] == "+" else 1
                 continue
 
-            # Build our number up MSB at the the, LSB at the bottom
+            # Build our number up MSB at the the top, LSB at the bottom
             number = sum(
                 int(val) * pow(10, len(column) - x - 1) for x, val in enumerate(column)
             )
