@@ -1,5 +1,3 @@
-"""Day 07 scaffold."""
-
 from __future__ import annotations
 
 from aoc_25.utils import parse_grid, Point, Grid2D, Direction
@@ -26,10 +24,8 @@ def find_timelines(grid: Grid2D, point: Point, memo: dict[Point, int]) -> int:
 
 
 class Day07:
-    """Placeholder implementation for Day 07."""
-
     day = 7
-    name = "Day 07 Placeholder"
+    name = "Laboratories"
 
     def __init__(self, data: str):
         self.grid = parse_grid(data, start_value="S")
