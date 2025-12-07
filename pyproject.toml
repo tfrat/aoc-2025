@@ -13,6 +13,6 @@ dependencies = [
 aoc25 = "aoc_25.runner:app"
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["tests", "aoc_25/tests"]
 
 tool.uv.package = true
