@@ -38,18 +38,15 @@ class Day07:
     def solve_part_one(self) -> str:
         count = 0
         beams = {self.grid.start.x}
-        new_beams = set()
-        remove_beams = set()
         for y in range(1, self.grid.height):
+            next_beams = set()
             for x in beams:
                 if self.grid.get(Point(x, y)) == self.splitter:
                     count += 1
-                    remove_beams.add(x)
-                    new_beams |= {x - 1, x + 1}
-            beams |= new_beams
-            beams -= remove_beams
-            new_beams.clear()
-            remove_beams.clear()
+                    next_beams |= {x - 1, x + 1}
+                else:
+                    next_beams |= {x}
+            beams = next_beams
 
         return str(count)
 
