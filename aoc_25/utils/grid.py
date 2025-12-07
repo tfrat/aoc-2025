@@ -17,6 +17,7 @@ class Grid2D(Generic[T]):
     cells: dict[Point, T]
     width: int
     height: int
+    start: Point | None = None
 
     def __contains__(self, point: Point) -> bool:
         return point in self.cells
@@ -54,6 +55,7 @@ def parse_grid(
     *,
     cast: Callable[[str], T] | None = None,
     keep_blank_lines: bool = False,
+    start_value: str | T | None = None,
 ) -> Grid2D[T | str]:
     """Parse text into a :class:`Grid2D`."""
 
@@ -67,9 +69,12 @@ def parse_grid(
     width = max((len(line) for line in processed), default=0)
 
     cells: dict[Point, T | str] = {}
+    start: Point | None = None
     for y, line in enumerate(processed):
         for x, char in enumerate(line):
             value: T | str = cast(char) if cast else char
             cells[Point(x, y)] = value
+            if start_value == value:
+                start = Point(x, y)
 
-    return Grid2D(cells=cells, width=width, height=height)
+    return Grid2D(cells=cells, width=width, height=height, start=start)
