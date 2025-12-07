@@ -51,5 +51,6 @@ class Day07:
         return str(count)
 
     def solve_part_two(self) -> str:
+        # Plus one to account for the original beam
         timelines = find_timelines(self.grid, self.grid.start, memo={}) + 1
         return str(timelines)
