@@ -2,7 +2,27 @@
 
 from __future__ import annotations
 
-from aoc_25.utils import parse_grid, Point
+from aoc_25.utils import parse_grid, Point, Grid2D, Direction
+
+
+def find_timelines(grid: Grid2D, point: Point, memo: dict[Point, int]) -> int:
+    # Seen this sub problem before
+    if point in memo:
+        return memo[point]
+
+    # Off the map, all done
+    if point.y >= grid.height:
+        memo[point] = 0
+        return memo[point]
+
+    if grid.get(point) == "^":
+        left = find_timelines(grid, point.step(Direction.WEST), memo)
+        right = find_timelines(grid, point.step(Direction.EAST), memo)
+        memo[point] = left + right + 1
+        return memo[point]
+
+    # Not split, step down
+    return find_timelines(grid, point.step(Direction.SOUTH), memo)
 
 
 class Day07:
@@ -34,4 +54,5 @@ class Day07:
         return str(count)
 
     def solve_part_two(self) -> str:
-        return ""
+        timelines = find_timelines(self.grid, self.grid.start, memo={}) + 1
+        return str(timelines)
