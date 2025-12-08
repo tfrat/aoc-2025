@@ -27,8 +27,26 @@ def pair_closest(boxes: list[Point3D]) -> dict[int, set[Point3D]]:
     return distances
 
 
-def closest_x_junctions(num_junctions: int) -> dict[int, set[Point3D]]:
-    return {}
+def integrate_nodes(
+    nodes: set[Point3D], junctions: list[set[Point3D]]
+) -> list[set[Point3D]]:
+    copied = junctions.copy()
+    matches = []
+    # Find all existing junctions that contain any of the input nodes
+    for j in range(0, len(copied)):
+        if copied[j] & nodes:
+            matches.append(j)
+
+    # No existing junctions reference the nodes, make a new junction
+    if not matches:
+        copied.append({*nodes})
+    else:
+        # Remove the matche junctions, merge and re-add back to the junctions list
+        new_junction = {*nodes}
+        for match in sorted(matches, reverse=True):
+            new_junction |= copied.pop(match)
+        copied.append(new_junction)
+    return copied
 
 
 class Day08:
@@ -44,26 +62,9 @@ class Day08:
         junctions = []
         distances = pair_closest(self.boxes)
         sorted_distances = sorted(distances.items(), key=lambda x: x[0])
-        for i in range(10):
-            _, linked = sorted_distances[i]
-            left, right = None, None
-            for j in range(0, len(junctions)):
-                if junctions[j] & linked:
-                    if not left:
-                        left = j
-                        continue
-                    if not right:
-                        right = j
-                        break
-
-            match left, right:
-                case None, None:
-                    junctions.append({*linked})
-                case _, None:
-                    junctions[left] |= linked
-                case _, _:
-                    junctions[left] |= junctions[right]
-                    junctions.pop(right)
+        for _ in range(1000):
+            _, linked = sorted_distances.pop(0)
+            junctions = integrate_nodes(linked, junctions)
 
         lengths = sorted([len(junction) for junction in junctions], reverse=True)
 
@@ -74,26 +75,7 @@ class Day08:
         sorted_distances = sorted(distances.items(), key=lambda x: x[0])
         junctions = []
 
-        i = 0
         while len(junctions) != 1 or len(junctions[0]) != len(self.boxes):
-            _, linked = sorted_distances[i]
-            left, right = None, None
-            for j in range(0, len(junctions)):
-                if junctions[j] & linked:
-                    if not left:
-                        left = j
-                        continue
-                    if not right:
-                        right = j
-                        break
-
-            match left, right:
-                case None, None:
-                    junctions.append({*linked})
-                case _, None:
-                    junctions[left] |= linked
-                case _, _:
-                    junctions[left] |= junctions[right]
-                    junctions.pop(right)
-            i += 1
+            _, linked = sorted_distances.pop(0)
+            junctions = integrate_nodes(linked, junctions)
         return str(linked.pop().x * linked.pop().x)
