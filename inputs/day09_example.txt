@@ -1,3 +1,8 @@
-Day 09 example input line 1
-Day 09 example input line 2
-Day 09 example input line 3
+7,1
+11,1
+11,7
+9,7
+9,5
+2,5
+2,3
+7,3
